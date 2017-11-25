@@ -1,0 +1,12 @@
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe.config
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\bin\Debug\NeuralNet.pdb
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csprojResolveAssemblyReference.cache
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Form1.resources
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Properties.Resources.resources
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.GenerateResource.Cache
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.CoreCompileInputs.cache
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.exe
+d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources

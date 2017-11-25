@@ -1,0 +1,10 @@
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\bin\Release\NeuralNet.exe.config
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\bin\Release\NeuralNet.exe
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\bin\Release\NeuralNet.pdb
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.Form1.resources
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.Properties.Resources.resources
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.QueryNetwork.resources
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.csproj.GenerateResource.Cache
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.csproj.CoreCompileInputs.cache
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.exe
+D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.pdb
