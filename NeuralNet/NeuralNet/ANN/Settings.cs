@@ -32,6 +32,8 @@ namespace ANN
         public ActivationFunctions.ActivationFunction Layer2Function { get; set; }
         public ActivationFunctions.ActivationFunction OutputLayerFunction { get; set; }
 
+        public List<ActivationFunction> ActivationFunctions { get; set; }
+
         public Boolean containsErrors { get; set; }
 
         public Settings()
@@ -48,9 +50,13 @@ namespace ANN
             Layer1Bias = true;
             Layer2Bias = true;
             OutputLayerBias = true;
-            Layer1Function = new ANN.ActivationFunctions.ReLUFunction();
-            Layer2Function = new ANN.ActivationFunctions.ReLUFunction();
-            OutputLayerFunction = new ANN.ActivationFunctions.IdentityFunction();
+            ActivationFunctions = new List<ActivationFunction>();
+
+            //add a fucntion for each hidden layer
+            for (int i = 0; i < HiddenLayers; ++i)
+                ActivationFunctions.Add(new ANN.ActivationFunctions.ReLUFunction());
+            //add the fucntion for the outputlayer
+            ActivationFunctions.Add(new ANN.ActivationFunctions.IdentityFunction());
 
             containsErrors = false;
         }

@@ -10,3 +10,26 @@ d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\De
 d:\users\sc0rpe\documents\visual studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
 D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
 D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csprojResolveAssemblyReference.cache
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Form1.resources
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Properties.Resources.resources
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.GenerateResource.Cache
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.CoreCompileInputs.cache
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.exe
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe.config
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe
+D:\Users\Sc0rpe\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.pdb
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe.config
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.exe
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\bin\Debug\NeuralNet.pdb
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csprojResolveAssemblyReference.cache
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Form1.resources
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Properties.Resources.resources
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources
+C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.GenerateResource.Cache

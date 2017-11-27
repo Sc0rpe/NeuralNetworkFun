@@ -33,7 +33,7 @@ namespace NeuralNet
             isTraining = false;
             NeuralNetwork.AppendText += new ANN.UI.StringArgReturningVoidDelegate(this.SendText);
             NeuralNetwork.SetProgress += new ANN.UI.ProgressReturningVoidDelegate(this.SetProgress);
-            myNeuralNetwork1 = new NeuralNetwork();
+            myNeuralNetwork1 = new NeuralNetwork(1);
         }
 
         private Settings checkSettings()

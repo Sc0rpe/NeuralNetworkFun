@@ -1,13 +1,11 @@
-﻿using System;
+﻿using ANN.Data;
+using ANN.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using ANN.Data;
-using ANN.UI;
 
 namespace ANN
 {
@@ -17,9 +15,9 @@ namespace ANN
         public string name { get; set; }
         static int NNcount = 0;
 
-        List<Neuron> inputLayer;
-        List<Neuron> outputLayer;
-        List<Neuron> hiddenLayer;
+        //List<Neuron> inputLayer;
+        //List<Neuron> outputLayer;
+        //List<Neuron> hiddenLayer;
 
         List<List<Neuron>> layers;
 
@@ -46,32 +44,36 @@ namespace ANN
             ++NNcount;
         }
 
-	    public NeuralNetwork()
+        public NeuralNetwork()
         {
-            inputLayer = new List<Neuron>();
-            outputLayer = new List<Neuron>();
-            hiddenLayer = new List<Neuron>();
             layers = new List<List<Neuron>>();
 
-            layers.Add(inputLayer);
-            layers.Add(hiddenLayer);
-            layers.Add(outputLayer);
+            for (int i = 0; i < 3; ++i)
+            {
+                layers.Add(new List<Neuron>());
+            }
 
             setName();
 
             score = -1.0f;
         }
 
-        public NeuralNetwork(int inputNeurons, int hiddenNeurons, int outputNeurons)
+        public NeuralNetwork(int hiddenlayers)
         {
-            inputLayer = new List<Neuron>();
-            outputLayer = new List<Neuron>();
-            hiddenLayer = new List<Neuron>();
             layers = new List<List<Neuron>>();
 
-            layers.Add(inputLayer);
-            layers.Add(hiddenLayer);
-            layers.Add(outputLayer);
+            for(int i=0; i < hiddenlayers+2;++i)
+            {
+                layers.Add(new List<Neuron>());
+            }
+
+            setName();
+
+            score = -1.0f;
+        }
+
+        public NeuralNetwork(int inputNeurons, int hiddenNeurons, int outputNeurons, int hiddenlayers) : this(hiddenlayers)
+        {
 
             AddInputNeuron(inputNeurons);
             AddHiddenNeuron(hiddenNeurons);
@@ -83,7 +85,7 @@ namespace ANN
             score = -1.0f;
         }
 
-        public NeuralNetwork(Settings s) : this(s.InputNeurons, s.HiddenNeurons, s.OutputNeurons)
+        public NeuralNetwork(Settings s) : this(s.InputNeurons, s.HiddenNeurons, s.OutputNeurons, s.HiddenLayers)
         {
             hiddenlayer1AFunction = s.Layer1Function;
             hiddenlayer2AFunction = s.Layer2Function;
@@ -95,21 +97,14 @@ namespace ANN
         /// (Deep) Copy Constructor for NeuroalNet
         /// </summary>
         /// <param name="net"></param>
-        public NeuralNetwork(NeuralNetwork net)
+        public NeuralNetwork(NeuralNetwork net) : this(net.layers.Count-2)
         {
-            inputLayer = new List<Neuron>();
-            outputLayer = new List<Neuron>();
-            hiddenLayer = new List<Neuron>();
-            layers = new List<List<Neuron>>();
-            layers.Add(inputLayer);
-            layers.Add(hiddenLayer);
-            layers.Add(outputLayer);
             settings = net.settings;
             name = "Copy of " + net.name;
 
             score = -1.0f;
 
-            foreach (Neuron inNeuron in net.inputLayer)
+            foreach (Neuron inNeuron in net.layers.ElementAt(0))
             {
                 Neuron n;
                 if ((n =  inNeuron as InputNeuron) != null)
@@ -119,7 +114,7 @@ namespace ANN
             }
 
 
-            foreach (Neuron outNeuron in net.outputLayer)
+            foreach (Neuron outNeuron in net.layers.ElementAt(net.layers.Count-1))
             {
                 Neuron n;
                 if ((n = outNeuron as WorkingNeuron) != null)
@@ -127,13 +122,16 @@ namespace ANN
 
             }
 
-            foreach (Neuron hidNeuron in net.hiddenLayer)
+            for (int l = 1; l <= net.layers.Count - 2; ++l)
             {
-                Neuron n;
-                if ((n = hidNeuron as WorkingNeuron) != null)
-                    AddHiddenNeuron(n.Copy());
-                else if ((n = hidNeuron as BiasNeuron) != null)
-                    AddHiddenNeuron(n.Copy());
+                foreach (Neuron hidNeuron in net.layers.ElementAt(l))
+                {
+                    Neuron n;
+                    if ((n = hidNeuron as WorkingNeuron) != null)
+                        AddHiddenNeuron(n.Copy(),l);
+                    else if ((n = hidNeuron as BiasNeuron) != null)
+                        AddHiddenNeuron(n.Copy(),l);
+                }
             }
 
             //generate Full mesh
@@ -141,28 +139,32 @@ namespace ANN
 
 
             //copy weights
-            //hidden layer
-            for (int i = 0; i < hiddenLayer.Count; ++i)
+            //hidden layers
+            for(int l=1; l < layers.Count-2; ++l)
             {
-                WorkingNeuron n = hiddenLayer.ElementAt(i) as WorkingNeuron;
-                if (n != null)
+                for (int i = 0; i < layers.ElementAt(l).Count; ++i)
                 {
-                    for (int c = 0; c < ((WorkingNeuron)net.hiddenLayer.ElementAt(i)).connections.Count; ++c)
+                    WorkingNeuron n = layers.ElementAt(l).ElementAt(i) as WorkingNeuron;
+                    if (n != null)
                     {
-                        n.connections.ElementAt(c).SetWeight(((WorkingNeuron)net.hiddenLayer.ElementAt(i)).connections.ElementAt(c).GetWeight());
+                        for (int c = 0; c < ((WorkingNeuron)net.layers.ElementAt(l).ElementAt(i)).connections.Count; ++c)
+                        {
+                            n.connections.ElementAt(c).SetWeight(((WorkingNeuron)net.layers.ElementAt(l).ElementAt(i)).connections.ElementAt(c).GetWeight());
+                        }
                     }
                 }
             }
 
+
             //output layer
-            for (int i = 0; i < outputLayer.Count; ++i)
+            for (int i = 0; i < layers.ElementAt(layers.Count-1).Count; ++i)
             {
-                WorkingNeuron n = outputLayer.ElementAt(i) as WorkingNeuron;
+                WorkingNeuron n = layers.ElementAt(layers.Count - 1).ElementAt(i) as WorkingNeuron;
                 if (n != null)
                 {
-                    for (int c = 0; c < ((WorkingNeuron)net.outputLayer.ElementAt(i)).connections.Count; ++c)
+                    for (int c = 0; c < ((WorkingNeuron)net.layers.ElementAt(layers.Count - 1).ElementAt(i)).connections.Count; ++c)
                     {
-                        n.connections.ElementAt(c).SetWeight(((WorkingNeuron)net.outputLayer.ElementAt(i)).connections.ElementAt(c).GetWeight());
+                        n.connections.ElementAt(c).SetWeight(((WorkingNeuron)net.layers.ElementAt(layers.Count - 1).ElementAt(i)).connections.ElementAt(c).GetWeight());
                     }
                 }
             }
@@ -192,13 +194,17 @@ namespace ANN
                 {
                     NeuralNetwork net = new NeuralNetwork(s);
 
+                    //work to do here
                     if(s.Layer1Bias)
                         net.SetBiasNeurons(0, true);
-                    if(s.OutputLayerBias)
+                    if (s.Layer2Bias)
                         net.SetBiasNeurons(1, true);
+                    if(s.OutputLayerBias)
+                        net.SetBiasNeurons(net.layers.Count-2, true);
 
-                    net.SetActivationFunctionForLayer(1, s.Layer1Function);
-                    net.SetActivationFunctionForLayer(2, s.OutputLayerFunction);
+                    //set the activation fucntions for all but the input layer
+                    for (int i = 0; i < s.ActivationFunctions.Count; ++i)
+                        net.SetActivationFunctionForLayer(i + 1, s.ActivationFunctions.ElementAt(i));
 
                     net.CreateFullMesh();
                     net.RandomizeWeights();
@@ -248,11 +254,11 @@ namespace ANN
         public void SetInputVector(List<double> v)
         {
             int index = 0;
+            List<Neuron> inpLayer = layers.ElementAt(0);
 
             foreach (double inp in v)
             {
-
-                ((InputNeuron)inputLayer.ElementAt(index)).SetValue(inp);
+                ((InputNeuron)inpLayer.ElementAt(index)).SetValue(inp);
                 ++index;
             }
             this.Invalidate();
@@ -261,8 +267,9 @@ namespace ANN
         public List<double> GetOutputVector()
         {
             List<double> result = new List<double>();
+            List<Neuron> outpLayer = layers.ElementAt(layers.Count-1);
 
-            foreach (Neuron it in outputLayer)
+            foreach (Neuron it in outpLayer)
             {
                 result.Add((it).GetValue());
             }
@@ -270,26 +277,33 @@ namespace ANN
             return result;
         }
 
+        private void SetLayerCount(int layercount)
+        {
+            layers.Clear();
+            for (int i = 0; i < layercount; ++i)
+                layers.Add(new List<Neuron>());
+        }
+
         //Setup Functions
         public void AddInputNeuron(Neuron n)
         {
             n.parentNetwork = this;
-            n.name = "Input_Neuron" + inputLayer.Count.ToString();
-            inputLayer.Add(n);
+            n.name = "Input_Neuron" + layers.ElementAt(0).Count.ToString();
+            layers.ElementAt(0).Add(n);
         }
 
         public void AddOutputNeuron(Neuron n)
         {
             n.parentNetwork = this;
-            n.name = "Output_Neuron" + outputLayer.Count.ToString();
-            outputLayer.Add(n);
+            n.name = "Output_Neuron" + layers.ElementAt(layers.Count-1).Count.ToString();
+            layers.ElementAt(layers.Count-1).Add(n);
         }
 
-        public void AddHiddenNeuron(Neuron n)
+        public void AddHiddenNeuron(Neuron n, int layer)
         {
             n.parentNetwork = this;
-            n.name = "Hidden_Neuron" + hiddenLayer.Count.ToString();
-            hiddenLayer.Add(n);
+            n.name = "Hidden_Neuron_" +layer.ToString() + "_" + layers.ElementAt(layer).Count.ToString();
+            layers.ElementAt(layer).Add(n);
         }
 
         public void AddInputNeuron(int n)
@@ -310,9 +324,13 @@ namespace ANN
 
         public void AddHiddenNeuron(int n)
         {
-            for (int i = 0; i < n; ++i)
+            //foreach hidden layer add a neuron
+            for (int l = 1; l <= (layers.Count - 2); l++)
             {
-                AddHiddenNeuron(new WorkingNeuron(this));
+                for (int i = 0; i < n; ++i)
+                {
+                    AddHiddenNeuron(new WorkingNeuron(this), l);
+                }
             }
         }
 
@@ -357,17 +375,22 @@ namespace ANN
 
         public void RemoveInputNeuron(Neuron n)
         {
-            inputLayer.Remove(n);
+            layers.ElementAt(0).Remove(n);
         }
 
         public void RemoveOutpuNeuron(Neuron n)
         {
-            outputLayer.Remove(n);
+            layers.ElementAt(layers.Count-1).Remove(n);
         }
 
-        public void RemoveHiddenNeuron(Neuron n)
+        /// <summary>
+        /// Removes a neuron from the hidden layer given as absolute layernumber by parameter layer
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="layer">Absolute layer number</param>
+        public void RemoveHiddenNeuron(Neuron n, int layer)
         {
-            hiddenLayer.Remove(n);
+            layers.ElementAt(layer).Remove(n);
         }
 
         public Neuron GetNeuronByName(string name)
@@ -391,39 +414,20 @@ namespace ANN
 
             for (int i = 0; i < mutations; ++i)
             {
-                int layer = myrand.NextInt(0, 10);
+                int layer = myrand.NextInt(1, 3);
 
+                //select neuron
+                Neuron neuron = null;
+                while (neuron == null)
+                    neuron = layers.ElementAt(layer).ElementAt(myrand.NextInt(0, layers.ElementAt(layer).Count - 1)) as WorkingNeuron;
 
-                if (layer <= 6)
-                {
-                    //select neuron
-                    Neuron neuron = null;
-                    while (neuron == null)
-                        neuron = hiddenLayer.ElementAt(myrand.NextInt(0, hiddenLayer.Count - 1)) as WorkingNeuron;
+                //select connection index
+                int index = myrand.NextInt(0, ((WorkingNeuron)neuron).connections.Count - 1) ;
+                double w = ((WorkingNeuron)neuron).connections.ElementAt(index).GetWeight();
+                double change = myrand.NextDouble(-0.3, 0.3);
+                change *= w;
 
-                    //select connection index
-                    int index = myrand.NextInt(0, ((WorkingNeuron)neuron).connections.Count - 1) ;
-                    double w = ((WorkingNeuron)neuron).connections.ElementAt(index).GetWeight();
-                    double change = myrand.NextDouble(-0.3, 0.3);
-                    change *= w;
-
-                    ((WorkingNeuron)neuron).connections[index].SetWeight(w + change);
-                }
-                else if (layer >= 7)
-                {
-                    //select neuron
-                    Neuron neuron = null;
-                    while (neuron == null)
-                        neuron = outputLayer.ElementAt(myrand.NextInt(0, outputLayer.Count - 1)) as WorkingNeuron;
-
-                    //select connection index
-                    int index = myrand.NextInt(0, ((WorkingNeuron)neuron).connections.Count - 1);
-                    double w = ((WorkingNeuron)neuron).connections.ElementAt(index).GetWeight();
-                    double change = myrand.NextDouble(-0.3, 0.3);
-                    change *= w;
-
-                    ((WorkingNeuron)neuron).connections[index].SetWeight(w + change);
-                }
+                ((WorkingNeuron)neuron).connections[index].SetWeight(w + change);
 
             }
         }
@@ -448,24 +452,19 @@ namespace ANN
         /// </summary>
         public void CreateFullMesh()
         {
-            //Connect each output neuron to each hidden layer neuron
-            foreach (Neuron itOut in outputLayer)
-            {
-                foreach (Neuron itHid in hiddenLayer)
-                {
-                    ((WorkingNeuron)(itOut)).AddConnection(itHid, 1.0);
-                }
-            }
-
             //connect each hidden neuron to each input neuron
-            foreach (Neuron itHid in hiddenLayer)
+            for(int l=layers.Count-1; l > 0; --l)
             {
-                WorkingNeuron wn = itHid as WorkingNeuron;
-                if (wn != null)
+                foreach(Neuron n in layers.ElementAt(l))
                 {
-                    foreach (Neuron itIn in inputLayer)
+                    WorkingNeuron wn = n as WorkingNeuron;
+
+                    if (wn != null)
                     {
-                        wn.AddConnection(itIn, 1.0);
+                        foreach (Neuron itIn in layers.ElementAt(l-1))
+                        {
+                            wn.AddConnection(itIn, 1.0);
+                        }
                     }
                 }
             }
@@ -476,23 +475,16 @@ namespace ANN
         /// </summary>
         public void CreateMesh()
         {
-            foreach(Neuron n in hiddenLayer)
-            {
-                WorkingNeuron wn = n as WorkingNeuron;
-                if(wn != null)
+            for (int l = layers.Count - 1; l > 0; --l)
+            { 
+                foreach (Neuron n in layers.ElementAt(l))
                 {
-                    foreach (Connection c in wn.connections)
-                        c.sourceNeuron = this.GetNeuronByName(c.sourceNeuronName);
-                }
-            }
-
-            foreach (Neuron n in outputLayer)
-            {
-                WorkingNeuron wn = n as WorkingNeuron;
-                if (wn != null)
-                {
-                    foreach (Connection c in wn.connections)
-                        c.sourceNeuron = this.GetNeuronByName(c.sourceNeuronName);
+                    WorkingNeuron wn = n as WorkingNeuron;
+                    if (wn != null)
+                    {
+                        foreach (Connection c in wn.connections)
+                            c.sourceNeuron = this.GetNeuronByName(c.sourceNeuronName);
+                    }
                 }
             }
         }
@@ -505,30 +497,20 @@ namespace ANN
         {
             MyRandom r = new MyRandom(-0.5, 0.5);
 
-            //set random weights for output
-            foreach (Neuron itOut in outputLayer)
+            for (int l = layers.Count - 1; l > 0; --l)
             {
-                List<Connection> con = ((WorkingNeuron)(itOut)).connections;
-
-                foreach (Connection c in con)
+                foreach (Neuron n in layers.ElementAt(l))
                 {
-                    c.SetWeight(r.NextDouble());
-                }
+                    WorkingNeuron wn = n as WorkingNeuron;
 
-            }
-
-            //set random weights for hidden
-            foreach (Neuron itHid in hiddenLayer)
-            {
-                WorkingNeuron wn = itHid as WorkingNeuron;
-                if (wn != null)
-                {
-                    List<Connection> con = wn.connections;
-
-                    foreach (Connection c in con)
+                    if (wn != null)
                     {
+                        List<Connection> con = wn.connections;
 
-                        c.SetWeight(r.NextDouble());
+                        foreach (Connection c in con)
+                        {
+                            c.SetWeight(r.NextDouble());
+                        }
                     }
                 }
             }
@@ -542,16 +524,14 @@ namespace ANN
 
         public void Invalidate()
         {
-            foreach (Neuron itOut in outputLayer)
+            for (int l = layers.Count - 1; l > 0; --l)
             {
-                ((WorkingNeuron)(itOut)).Invalidate();
-            }
-
-            foreach (Neuron itHid in hiddenLayer)
-            {
-                WorkingNeuron n = itHid as WorkingNeuron;
-                if (n != null)
-                    n.Invalidate();
+                foreach (Neuron n in layers.ElementAt(l))
+                {
+                    WorkingNeuron wn = n as WorkingNeuron;
+                    if (wn != null)
+                        wn.Invalidate();
+                }
             }
         }
 
@@ -644,36 +624,41 @@ namespace ANN
             reader.ReadStartElement("NeuralNetwork");
             this.name = reader.ReadElementContentAsString("name", "");
             this.score = reader.ReadElementContentAsDouble("score", "");
+            int layercount = reader.ReadElementContentAsInt("layers", "");
+            SetLayerCount(layercount);
 
             //Deserialize InputNeurons
-            reader.ReadStartElement("InputNeurons");
+            reader.ReadStartElement("InputLayer");
             while(reader.IsStartElement("InputNeuron") || reader.IsStartElement("BiasNeuron"))
             {
                 Type type = Type.GetType(reader.GetAttribute("AssemblyQualifiedName"));
                 XmlSerializer xmlSerializer = new XmlSerializer(type);
-                this.inputLayer.Add((Neuron)xmlSerializer.Deserialize(reader));
+                this.layers.ElementAt(0).Add((Neuron)xmlSerializer.Deserialize(reader));
                 reader.ReadEndElement();
             }
             reader.ReadEndElement();
 
-            //Deserialize HiddenNeurons
-            reader.ReadStartElement("HiddenNeurons");
-            while (reader.IsStartElement("WorkingNeuron") || reader.IsStartElement("BiasNeuron"))
+            for (int l = 1; l <= layers.Count - 2; ++l)
             {
-                Type type = Type.GetType(reader.GetAttribute("AssemblyQualifiedName"));
-                XmlSerializer xmlSerializer = new XmlSerializer(type);
-                this.hiddenLayer.Add((Neuron)xmlSerializer.Deserialize(reader));
+                //Deserialize HiddenNeurons
+                reader.ReadStartElement("HiddenLayer" + l.ToString());
+                while (reader.IsStartElement("WorkingNeuron") || reader.IsStartElement("BiasNeuron"))
+                {
+                    Type type = Type.GetType(reader.GetAttribute("AssemblyQualifiedName"));
+                    XmlSerializer xmlSerializer = new XmlSerializer(type);
+                    this.layers.ElementAt(l).Add((Neuron)xmlSerializer.Deserialize(reader));
+                    reader.ReadEndElement();
+                }
                 reader.ReadEndElement();
             }
-            reader.ReadEndElement();
 
             //Deserialize OutputNeurons
-            reader.ReadStartElement("OutputNeurons");
+            reader.ReadStartElement("OutputLayer");
             while (reader.IsStartElement("WorkingNeuron"))
             {
                 Type type = Type.GetType(reader.GetAttribute("AssemblyQualifiedName"));
                 XmlSerializer xmlSerializer = new XmlSerializer(type);
-                this.outputLayer.Add((Neuron)xmlSerializer.Deserialize(reader));
+                this.layers.ElementAt(layers.Count-1).Add((Neuron)xmlSerializer.Deserialize(reader));
                 reader.ReadEndElement();
             }
             reader.ReadEndElement();
@@ -691,10 +676,11 @@ namespace ANN
         {
             writer.WriteElementString("name", this.name);
             writer.WriteElementString("score", this.score.ToString());
+            writer.WriteElementString("layers", this.layers.Count.ToString());
 
             //serialize input layer
-            writer.WriteStartElement("InputNeurons");
-            foreach (Neuron n in inputLayer)
+            writer.WriteStartElement("InputLayer");
+            foreach (Neuron n in layers.ElementAt(0))
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(n.GetType());
                 xmlSerializer.Serialize(writer, n);
@@ -702,17 +688,20 @@ namespace ANN
             writer.WriteEndElement();
 
             //serialize hidden layer
-            writer.WriteStartElement("HiddenNeurons");
-            foreach (Neuron n in hiddenLayer)
+            for (int l = 1; l <= layers.Count - 2; ++l)
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(n.GetType());
-                xmlSerializer.Serialize(writer, n);
+                writer.WriteStartElement("HiddenLayer" + l.ToString());
+                foreach (Neuron n in layers.ElementAt(l))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(n.GetType());
+                    xmlSerializer.Serialize(writer, n);
+                }
+                writer.WriteEndElement();
             }
-            writer.WriteEndElement();
 
             //serialize output layer
-            writer.WriteStartElement("OutputNeurons");
-            foreach (Neuron n in outputLayer)
+            writer.WriteStartElement("OutputLayer");
+            foreach (Neuron n in layers.ElementAt(layers.Count-1))
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(n.GetType());
                 xmlSerializer.Serialize(writer, n);
