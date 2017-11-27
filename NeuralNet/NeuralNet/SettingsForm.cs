@@ -48,6 +48,7 @@ namespace NeuralNet
             tb_PopulationSize.Text = settings.PopulationSize.ToString();
             tb_PopulationRelease.Text = settings.PopulationRelease.ToString();
             tb_HiddenLayers.Text = settings.HiddenLayers.ToString();
+            tb_TrainingThreads.Text = settings.TrainingThreads.ToString();
 
             AdjustAFComboBoxes();
             
@@ -79,6 +80,7 @@ namespace NeuralNet
                 settings.HiddenLayerBias = cb_HiddenLayerBias.Checked;
                 settings.OutputLayerBias = cb_OutputLayerBias.Checked;
                 settings.HiddenLayers = Convert.ToInt32(tb_HiddenLayers.Text);
+                settings.TrainingThreads = Convert.ToInt32(tb_TrainingThreads.Text);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

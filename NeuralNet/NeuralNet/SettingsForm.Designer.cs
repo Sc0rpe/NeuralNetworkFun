@@ -50,6 +50,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_TrainingThreads = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -75,9 +77,12 @@
             this.tableLayoutPanel1.Controls.Add(this.tb_SplitChar, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.tb_HiddenLayers, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tb_TrainingThreads, 1, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -99,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 44);
+            this.label2.Location = new System.Drawing.Point(3, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 1;
@@ -108,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 88);
+            this.label3.Location = new System.Drawing.Point(3, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
@@ -127,7 +132,7 @@
             // 
             this.tb_PopulationSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_PopulationSize.Location = new System.Drawing.Point(105, 47);
+            this.tb_PopulationSize.Location = new System.Drawing.Point(105, 40);
             this.tb_PopulationSize.Name = "tb_PopulationSize";
             this.tb_PopulationSize.Size = new System.Drawing.Size(164, 20);
             this.tb_PopulationSize.TabIndex = 4;
@@ -136,7 +141,7 @@
             // 
             this.tb_Mutations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_Mutations.Location = new System.Drawing.Point(105, 91);
+            this.tb_Mutations.Location = new System.Drawing.Point(105, 77);
             this.tb_Mutations.Name = "tb_Mutations";
             this.tb_Mutations.Size = new System.Drawing.Size(164, 20);
             this.tb_Mutations.TabIndex = 5;
@@ -144,7 +149,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 132);
+            this.label4.Location = new System.Drawing.Point(3, 111);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 6;
@@ -154,7 +159,7 @@
             // 
             this.tb_PopulationRelease.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_PopulationRelease.Location = new System.Drawing.Point(105, 135);
+            this.tb_PopulationRelease.Location = new System.Drawing.Point(105, 114);
             this.tb_PopulationRelease.Name = "tb_PopulationRelease";
             this.tb_PopulationRelease.Size = new System.Drawing.Size(164, 20);
             this.tb_PopulationRelease.TabIndex = 7;
@@ -162,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 176);
+            this.label5.Location = new System.Drawing.Point(3, 148);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 8;
@@ -172,7 +177,7 @@
             // 
             this.tb_SplitChar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_SplitChar.Location = new System.Drawing.Point(105, 179);
+            this.tb_SplitChar.Location = new System.Drawing.Point(105, 151);
             this.tb_SplitChar.Name = "tb_SplitChar";
             this.tb_SplitChar.Size = new System.Drawing.Size(164, 20);
             this.tb_SplitChar.TabIndex = 9;
@@ -181,7 +186,7 @@
             // 
             this.tb_HiddenLayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tb_HiddenLayers.Location = new System.Drawing.Point(105, 223);
+            this.tb_HiddenLayers.Location = new System.Drawing.Point(105, 188);
             this.tb_HiddenLayers.Name = "tb_HiddenLayers";
             this.tb_HiddenLayers.Size = new System.Drawing.Size(164, 20);
             this.tb_HiddenLayers.TabIndex = 10;
@@ -190,7 +195,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 220);
+            this.label10.Location = new System.Drawing.Point(3, 185);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 13);
             this.label10.TabIndex = 11;
@@ -304,6 +309,24 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(557, 270);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 222);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Training Threads";
+            // 
+            // tb_TrainingThreads
+            // 
+            this.tb_TrainingThreads.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_TrainingThreads.Location = new System.Drawing.Point(105, 225);
+            this.tb_TrainingThreads.Name = "tb_TrainingThreads";
+            this.tb_TrainingThreads.Size = new System.Drawing.Size(164, 20);
+            this.tb_TrainingThreads.TabIndex = 13;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,5 +369,7 @@
         private System.Windows.Forms.TextBox tb_HiddenLayers;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tb_TrainingThreads;
     }
 }
