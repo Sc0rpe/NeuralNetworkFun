@@ -31,6 +31,7 @@ namespace ANN
 
         public double score;
         private static bool isInterrupted = false;
+        private static readonly object locklist = new object();
 
         static List<TrainingData> td;
 
@@ -195,10 +196,12 @@ namespace ANN
                     NeuralNetwork net = new NeuralNetwork(s);
 
                     //work to do here
-                    if(s.Layer1Bias)
-                        net.SetBiasNeurons(0, true);
-                    if (s.Layer2Bias)
-                        net.SetBiasNeurons(1, true);
+                    if (s.HiddenLayerBias)
+                    {
+                        for(int i=0; i < net.layers.Count()-2; ++i)
+                            net.SetBiasNeurons(i, true);
+                    }
+
                     if(s.OutputLayerBias)
                         net.SetBiasNeurons(net.layers.Count-2, true);
 
@@ -212,7 +215,7 @@ namespace ANN
                     net.ScoreNetwork();
                     pop.Add(net);
                 }
-                AppendText("\rGeneration[" + Convert.ToString(g) + "]");
+                AppendText("\rGeneration[" + g.ToString() + "]");
 
                 //sort from lowest to highest score
                 pop.Sort();
@@ -227,15 +230,53 @@ namespace ANN
                     pop.Remove(d);
                 }
 
-                //add some mutations from the top 400
-                for (int i = 0; i < 300; ++i)
+                //create the population lists for the threads
+                List<List<NeuralNetwork>> t_list = new List<List<NeuralNetwork>>();
+                int range = pop.Count / s.TrainingThreads;
+                int rangeEnd = range * s.TrainingThreads;
+                for(int i=0; i< s.TrainingThreads; ++i)
                 {
-                    NeuralNetwork m = new NeuralNetwork(pop.ElementAt(i));
-                    m.MutateWeightsRandom(s.Mutations);
-                    m.Invalidate();
-                    m.ScoreNetwork();
-                    pop.Add(m);
+                    List<NeuralNetwork> list = new List<NeuralNetwork>();
+                    for(int n= range * i; n < range*(i+1); ++n)
+                        list.Add(pop.ElementAt(n));
+                    
+                    t_list.Add(list);
                 }
+                //add difference for odd thread numbers
+                for (int n = rangeEnd; n < pop.Count; n++)
+                    t_list.ElementAt(t_list.Count - 1).Add(pop.ElementAt(n));
+
+                List<System.Threading.Thread> train_threads = new List<System.Threading.Thread>(t_list.Count);
+
+                for(int t=0; t < t_list.Count; ++t)
+                {
+                    int t_copy = t;
+                    System.Threading.Thread thread = new System.Threading.Thread(() =>
+                    {
+                        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                        List<NeuralNetwork> l = t_list.ElementAt(t_copy);
+                        l = NeuralNetwork.MutateList(l);
+                        lock(locklist)
+                        {
+                            t_list.Remove(t_list.ElementAt(t_copy));
+                            t_list.Add(l);
+                        }
+
+                    });
+                    train_threads.Add(thread);
+                }
+
+                foreach (System.Threading.Thread t in train_threads)
+                    t.Start();
+
+                for(int t=0; t < train_threads.Count; ++t)
+                {
+                    System.Threading.Thread thread = train_threads.ElementAt(t);
+                    thread.Join();
+                    pop.AddRange(t_list.ElementAt(t));
+                }
+                
+
                 AppendText("- Score: " + Convert.ToString(pop.ElementAt(0).score) + System.Environment.NewLine);
                 ++g;
                 SetProgress(g);
@@ -406,6 +447,22 @@ namespace ANN
 
             return n;
         }
+        
+        private static List<NeuralNetwork> MutateList(List<NeuralNetwork> pop)
+        {
+            List<NeuralNetwork> mutations = new List<NeuralNetwork>(pop.Count);
+
+            for(int i=pop.Count-1; i >= 0; --i)
+            {
+                NeuralNetwork newnet = new NeuralNetwork(pop.ElementAt(i));
+                newnet.MutateWeightsRandom(40);
+                newnet.Invalidate();
+                newnet.ScoreNetwork();
+                mutations.Add(newnet);
+                //pop.Remove(pop.ElementAt(i));
+            }
+            return mutations;
+        }
 
         public void MutateWeightsRandom(int mutations)
         {
@@ -414,7 +471,7 @@ namespace ANN
 
             for (int i = 0; i < mutations; ++i)
             {
-                int layer = myrand.NextInt(1, 3);
+                int layer = myrand.NextInt(1, this.layers.Count-1);
 
                 //select neuron
                 Neuron neuron = null;

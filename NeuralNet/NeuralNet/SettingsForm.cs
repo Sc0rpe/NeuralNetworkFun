@@ -57,7 +57,7 @@ namespace NeuralNet
                     cb_OutputLayerAF.SelectedIndex = i;
             }
 
-            cb_HiddenLayerBias.Checked = settings.Layer1Bias;
+            cb_HiddenLayerBias.Checked = settings.HiddenLayerBias;
             cb_OutputLayerBias.Checked = settings.OutputLayerBias;
         }
 
@@ -76,7 +76,7 @@ namespace NeuralNet
                     settings.ActivationFunctions.Add((ActivationFunction)cb.SelectedItem);
                 }
                 settings.ActivationFunctions.Add((ActivationFunction)cb_OutputLayerAF.SelectedItem);
-                settings.Layer1Bias = cb_HiddenLayerBias.Checked;
+                settings.HiddenLayerBias = cb_HiddenLayerBias.Checked;
                 settings.OutputLayerBias = cb_OutputLayerBias.Checked;
                 settings.HiddenLayers = Convert.ToInt32(tb_HiddenLayers.Text);
 
@@ -107,7 +107,7 @@ namespace NeuralNet
             {
                 Label l = new Label() { Text = "Hidden Layer" + (i + 1) + "Activation Function", AutoSize = true };
                 tableLayoutPanel2.Controls.Add(l);
-                ComboBox cb = new ComboBox();
+                ComboBox cb = new ComboBox() { Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right};
 
 
                 lbl_activationFunctions.Add(l);

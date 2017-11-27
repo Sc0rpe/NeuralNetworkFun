@@ -20,10 +20,10 @@ namespace ANN
         public int MaxGens { get; set; }
         public int PopulationSize { get; set; } 
         public int Mutations { get; set; } //amount of mutations done for one individual
+        public int TrainingThreads { get; set; } //Number of threads used for training the network
         public char SplitChar { get; set; } //character at wich to split the vector values
         public double PopulationRelease { get; set; }
-        public bool Layer1Bias { get; set; }
-        public bool Layer2Bias { get; set; }
+        public bool HiddenLayerBias { get; set; }
         public bool OutputLayerBias { get; set; }
 
         public string TrainingDataFilePath { get; set; }
@@ -42,13 +42,13 @@ namespace ANN
             InputNeurons = 4;
             HiddenNeurons = 8;
             OutputNeurons = 4;
+            TrainingThreads = 4;
             MaxGens = 1000;
             PopulationSize = 1000;
             PopulationRelease = 0.6;
             Mutations = 40;
             SplitChar = ',';
-            Layer1Bias = true;
-            Layer2Bias = true;
+            HiddenLayerBias = true;
             OutputLayerBias = true;
             ActivationFunctions = new List<ActivationFunction>();
 
