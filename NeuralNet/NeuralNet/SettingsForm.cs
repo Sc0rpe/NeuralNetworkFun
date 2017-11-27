@@ -22,7 +22,6 @@ namespace NeuralNet
 
         public SettingsForm()
         {
-            InitializeComponent();
             functions = new List<ActivationFunction>();
             cb_activationFunctions = new List<ComboBox>();
             lbl_activationFunctions = new List<Label>();
@@ -31,6 +30,8 @@ namespace NeuralNet
             functions.Add(new IdentityFunction());
             functions.Add(new SigmoidFunction());
             functions.Add(new HyperbolicTanget());
+
+            InitializeComponent();
 
             cb_OutputLayerAF.DataSource = new BindingList<ActivationFunction>(functions);
             cb_OutputLayerAF.DisplayMember = "Name";
@@ -49,22 +50,12 @@ namespace NeuralNet
             tb_HiddenLayers.Text = settings.HiddenLayers.ToString();
 
             AdjustAFComboBoxes();
-
-            //for(int i = 0; i < functions.Count; ++i)
-            //{
-            //    if (settings.Layer1Function.Name == functions.ElementAt(i).Name)
-            //        cb_HiddenLayer1AF.SelectedIndex = i;
-            //}
-            //for (int i = 0; i < functions.Count; ++i)
-            //{
-            //    if (settings.Layer2Function.Name == functions.ElementAt(i).Name)
-            //        cb_HiddenLayer2AF.SelectedIndex = i;
-            //}
-            //for (int i = 0; i < functions.Count; ++i)
-            //{
-            //    if (settings.OutputLayerFunction.Name == functions.ElementAt(i).Name)
-            //        cb_OutputLayerAF.SelectedIndex = i;
-            //}
+            
+            for(int i=0; i < functions.Count; ++i)
+            {
+                if (settings.ActivationFunctions.ElementAt(settings.ActivationFunctions.Count - 1).Name == functions.ElementAt(i).Name)
+                    cb_OutputLayerAF.SelectedIndex = i;
+            }
 
             cb_HiddenLayerBias.Checked = settings.Layer1Bias;
             cb_OutputLayerBias.Checked = settings.OutputLayerBias;
@@ -84,7 +75,7 @@ namespace NeuralNet
                 {
                     settings.ActivationFunctions.Add((ActivationFunction)cb.SelectedItem);
                 }
-                settings.OutputLayerFunction = (ActivationFunction)cb_OutputLayerAF.SelectedItem;
+                settings.ActivationFunctions.Add((ActivationFunction)cb_OutputLayerAF.SelectedItem);
                 settings.Layer1Bias = cb_HiddenLayerBias.Checked;
                 settings.OutputLayerBias = cb_OutputLayerBias.Checked;
                 settings.HiddenLayers = Convert.ToInt32(tb_HiddenLayers.Text);
@@ -117,12 +108,27 @@ namespace NeuralNet
                 Label l = new Label() { Text = "Hidden Layer" + (i + 1) + "Activation Function", AutoSize = true };
                 tableLayoutPanel2.Controls.Add(l);
                 ComboBox cb = new ComboBox();
-                cb.DataSource = new BindingList<ActivationFunction>(functions);
-                cb.DisplayMember = "Name";
+
+
                 lbl_activationFunctions.Add(l);
                 cb_activationFunctions.Add(cb);
                 tableLayoutPanel2.Controls.Add(cb);
+
+                cb.DataSource = new BindingList<ActivationFunction>(functions);
+                cb.DisplayMember = "Name";
             }
+
+            int index = 0;
+            foreach(ComboBox cb in cb_activationFunctions)
+            {
+                for (int j = 0; j < functions.Count; ++j)
+                {
+                    if (settings.ActivationFunctions.ElementAt(index).Name == functions.ElementAt(j).Name)
+                        cb.SelectedIndex = j;
+                }
+                ++index;
+            }
+
         }
 
         private void tb_HiddenLayers_TextChanged(object sender, EventArgs e)

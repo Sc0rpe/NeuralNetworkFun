@@ -55,6 +55,8 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -70,8 +72,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tb_SplitChar, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.tb_HiddenLayers, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 5);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 23);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -80,115 +81,103 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 508);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(227, 264);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 25);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Max Generations";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 84);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(3, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 25);
+            this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Population Size";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 168);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Location = new System.Drawing.Point(3, 88);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 25);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Mutations";
             // 
             // tb_MaxGenerations
             // 
-            this.tb_MaxGenerations.Location = new System.Drawing.Point(211, 6);
-            this.tb_MaxGenerations.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_MaxGenerations.Location = new System.Drawing.Point(105, 3);
             this.tb_MaxGenerations.Name = "tb_MaxGenerations";
-            this.tb_MaxGenerations.Size = new System.Drawing.Size(196, 31);
+            this.tb_MaxGenerations.Size = new System.Drawing.Size(100, 20);
             this.tb_MaxGenerations.TabIndex = 3;
             // 
             // tb_PopulationSize
             // 
-            this.tb_PopulationSize.Location = new System.Drawing.Point(211, 90);
-            this.tb_PopulationSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_PopulationSize.Location = new System.Drawing.Point(105, 47);
             this.tb_PopulationSize.Name = "tb_PopulationSize";
-            this.tb_PopulationSize.Size = new System.Drawing.Size(196, 31);
+            this.tb_PopulationSize.Size = new System.Drawing.Size(100, 20);
             this.tb_PopulationSize.TabIndex = 4;
             // 
             // tb_Mutations
             // 
-            this.tb_Mutations.Location = new System.Drawing.Point(211, 174);
-            this.tb_Mutations.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_Mutations.Location = new System.Drawing.Point(105, 91);
             this.tb_Mutations.Name = "tb_Mutations";
-            this.tb_Mutations.Size = new System.Drawing.Size(196, 31);
+            this.tb_Mutations.Size = new System.Drawing.Size(100, 20);
             this.tb_Mutations.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 252);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Location = new System.Drawing.Point(3, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(193, 25);
+            this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "PopulationRelease";
             // 
             // tb_PopulationRelease
             // 
-            this.tb_PopulationRelease.Location = new System.Drawing.Point(211, 258);
-            this.tb_PopulationRelease.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_PopulationRelease.Location = new System.Drawing.Point(105, 135);
             this.tb_PopulationRelease.Name = "tb_PopulationRelease";
-            this.tb_PopulationRelease.Size = new System.Drawing.Size(196, 31);
+            this.tb_PopulationRelease.Size = new System.Drawing.Size(100, 20);
             this.tb_PopulationRelease.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 336);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Location = new System.Drawing.Point(3, 176);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 25);
+            this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Split Char";
             // 
             // tb_SplitChar
             // 
-            this.tb_SplitChar.Location = new System.Drawing.Point(211, 342);
-            this.tb_SplitChar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_SplitChar.Location = new System.Drawing.Point(105, 179);
             this.tb_SplitChar.Name = "tb_SplitChar";
-            this.tb_SplitChar.Size = new System.Drawing.Size(196, 31);
+            this.tb_SplitChar.Size = new System.Drawing.Size(100, 20);
             this.tb_SplitChar.TabIndex = 9;
             // 
             // tb_HiddenLayers
             // 
-            this.tb_HiddenLayers.Location = new System.Drawing.Point(211, 426);
-            this.tb_HiddenLayers.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tb_HiddenLayers.Location = new System.Drawing.Point(105, 223);
             this.tb_HiddenLayers.Name = "tb_HiddenLayers";
-            this.tb_HiddenLayers.Size = new System.Drawing.Size(196, 31);
+            this.tb_HiddenLayers.Size = new System.Drawing.Size(100, 20);
             this.tb_HiddenLayers.TabIndex = 10;
             this.tb_HiddenLayers.TextChanged += new System.EventHandler(this.tb_HiddenLayers_TextChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 420);
-            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Location = new System.Drawing.Point(3, 220);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(151, 25);
+            this.label10.Size = new System.Drawing.Size(75, 13);
             this.label10.TabIndex = 11;
             this.label10.Text = "Hidden Layers";
             // 
@@ -205,34 +194,31 @@
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.cb_OutputLayerAF, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(490, 29);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(245, 15);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(654, 502);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(327, 261);
             this.tableLayoutPanel2.TabIndex = 1;
             this.tableLayoutPanel2.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.tableLayoutPanel2_ControlAdded);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 25);
+            this.label6.Size = new System.Drawing.Size(93, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "Hidden Layer Bias";
             // 
             // cb_HiddenLayerBias
             // 
             this.cb_HiddenLayerBias.AutoSize = true;
-            this.cb_HiddenLayerBias.Location = new System.Drawing.Point(343, 6);
-            this.cb_HiddenLayerBias.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cb_HiddenLayerBias.Location = new System.Drawing.Point(171, 3);
             this.cb_HiddenLayerBias.Name = "cb_HiddenLayerBias";
-            this.cb_HiddenLayerBias.Size = new System.Drawing.Size(101, 29);
+            this.cb_HiddenLayerBias.Size = new System.Drawing.Size(55, 17);
             this.cb_HiddenLayerBias.TabIndex = 1;
             this.cb_HiddenLayerBias.Text = "active";
             this.cb_HiddenLayerBias.UseVisualStyleBackColor = true;
@@ -240,10 +226,9 @@
             // cb_OutputLayerBias
             // 
             this.cb_OutputLayerBias.AutoSize = true;
-            this.cb_OutputLayerBias.Location = new System.Drawing.Point(343, 173);
-            this.cb_OutputLayerBias.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cb_OutputLayerBias.Location = new System.Drawing.Point(171, 90);
             this.cb_OutputLayerBias.Name = "cb_OutputLayerBias";
-            this.cb_OutputLayerBias.Size = new System.Drawing.Size(101, 29);
+            this.cb_OutputLayerBias.Size = new System.Drawing.Size(55, 17);
             this.cb_OutputLayerBias.TabIndex = 2;
             this.cb_OutputLayerBias.Text = "active";
             this.cb_OutputLayerBias.UseVisualStyleBackColor = true;
@@ -251,38 +236,34 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 167);
-            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label7.Location = new System.Drawing.Point(3, 87);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(184, 25);
+            this.label7.Size = new System.Drawing.Size(91, 13);
             this.label7.TabIndex = 3;
             this.label7.Text = "Output Layer Bias";
             // 
             // cb_OutputLayerAF
             // 
             this.cb_OutputLayerAF.FormattingEnabled = true;
-            this.cb_OutputLayerAF.Location = new System.Drawing.Point(343, 340);
-            this.cb_OutputLayerAF.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cb_OutputLayerAF.Location = new System.Drawing.Point(171, 177);
             this.cb_OutputLayerAF.Name = "cb_OutputLayerAF";
-            this.cb_OutputLayerAF.Size = new System.Drawing.Size(238, 33);
+            this.cb_OutputLayerAF.Size = new System.Drawing.Size(121, 21);
             this.cb_OutputLayerAF.TabIndex = 7;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 334);
-            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label9.Location = new System.Drawing.Point(3, 174);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(325, 25);
+            this.label9.Size = new System.Drawing.Size(162, 13);
             this.label9.TabIndex = 5;
             this.label9.Text = "Output Layer Activation Function";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(716, 542);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Location = new System.Drawing.Point(358, 282);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 44);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
@@ -290,13 +271,12 @@
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1168, 596);
+            this.ClientSize = new System.Drawing.Size(584, 310);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "SettingsForm";
             this.Text = "SettingsForm";
             this.tableLayoutPanel1.ResumeLayout(false);
