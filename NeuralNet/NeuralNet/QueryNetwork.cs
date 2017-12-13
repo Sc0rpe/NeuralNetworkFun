@@ -48,6 +48,7 @@ namespace NeuralNet
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
+            textBox1.Clear();
             List<double> inputs = new List<double>();
 
             foreach(TextBox tb in boxes)

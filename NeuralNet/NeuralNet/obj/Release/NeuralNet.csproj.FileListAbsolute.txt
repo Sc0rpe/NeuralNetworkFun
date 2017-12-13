@@ -8,3 +8,14 @@ D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Re
 D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.csproj.CoreCompileInputs.cache
 D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.exe
 D:\Users\Sc0rpe\Documents\Visual Studio 2017\Projects\NeuralNet\NeuralNet\obj\Release\NeuralNet.pdb
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Release\NeuralNet.exe.config
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.exe
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.pdb
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Release\NeuralNet.exe
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Release\NeuralNet.pdb
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.csprojResolveAssemblyReference.cache
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.Form1.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.Properties.Resources.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.QueryNetwork.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.SettingsForm.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Release\NeuralNet.csproj.GenerateResource.Cache

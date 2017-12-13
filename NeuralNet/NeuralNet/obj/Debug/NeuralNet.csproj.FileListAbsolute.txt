@@ -33,3 +33,14 @@ C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Proper
 C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
 C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources
 C:\Users\Rico\Dropbox\Programming\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.GenerateResource.Cache
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe.config
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.exe
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\bin\Debug\NeuralNet.pdb
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csprojResolveAssemblyReference.cache
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Form1.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.Properties.Resources.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.QueryNetwork.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.SettingsForm.resources
+C:\Users\Rico\Documents\GitHub\NeuralNetworkFun\NeuralNet\NeuralNet\obj\Debug\NeuralNet.csproj.GenerateResource.Cache
